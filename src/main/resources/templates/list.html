@@ -5,8 +5,8 @@
     <title>Persons database</title>
 </head>
 <body>
-<a href="/person/new">Add new person</a>
-</hr>
+<a href="/user/new">Add new person</a>
+
 
 <table border="1">
     <tr>
@@ -14,8 +14,8 @@
         <th>Last name</th>
         <th>Mail</th>
     </tr>
-    <tr th:each="user: ${persons}">
-        <td><a th:href="@{/person/{id}(id=${user.getId()})}" th:text="${user.getName}">Name</a></td>
+    <tr th:each="user: ${users}">
+        <td><a th:href="@{/user/{id}(id=${user.getId()})}" th:text="${user.getName}">Name</a></td>
         <td th:text="${user.getLastName()}">Last name</td>
         <td th:text="${user.getMail()}">Mail</td>
     </tr>

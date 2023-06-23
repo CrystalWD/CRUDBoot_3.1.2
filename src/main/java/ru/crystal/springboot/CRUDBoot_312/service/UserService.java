@@ -5,13 +5,13 @@ import ru.crystal.springboot.CRUDBoot_312.model.User;
 import java.util.List;
 
 public interface UserService {
-    List<User> getPersonsList();
+    List<User> getUsersList();
 
-    User getPersonById(int id);
+    User getUserById(int id);
 
     void save(User person);
 
-    void update(int id, User user);
+    void update(User user);
 
     void delete(int id);
 }

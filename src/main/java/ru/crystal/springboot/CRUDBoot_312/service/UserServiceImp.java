@@ -2,6 +2,7 @@ package ru.crystal.springboot.CRUDBoot_312.service;
 
 
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,14 +26,14 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public List<User> getPersonsList() {
+    public List<User> getUsersList() {
         return personRepository.findAll();
     }
 
     @Override
-    public User getPersonById(int id) {
+    public User getUserById(int id) {
         Optional<User> byId = personRepository.findById(id);
-        return byId.orElseThrow();
+        return byId.orElseThrow(()-> new EntityNotFoundException("User not found. ID: "+ id));
     }
 
 
@@ -44,13 +45,13 @@ public class UserServiceImp implements UserService {
 
     @Transactional
     @Override
-    public void update(int id, User user) {
+    public void update(User user) {
         personRepository.save(user);
     }
 
     @Transactional
     @Override
     public void delete(int id) {
-        personRepository.delete(getPersonById(id));
+        personRepository.delete(getUserById(id));
     }
 }
